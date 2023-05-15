@@ -1,18 +1,21 @@
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 import './App.css'
 import Display from './display'
 import Get from './Get'
 
+export const AppContext = createContext(null)
+
 function App() {
 
-  const [name,set] = useState("")
+  const [name, set] = useState("")
 
   return (
     <div>
-      
-      <Get seting={set}/>
-      <Display show={name}/>
-      
+      <AppContext.Provider value={{name,set}}>
+        <Get />
+        <Display/>
+      </AppContext.Provider>
+
     </div>
   )
 }
